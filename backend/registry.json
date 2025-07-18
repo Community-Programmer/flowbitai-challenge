@@ -1,0 +1,10 @@
+[
+  {
+    "tenant": "LogisticsCo",
+    "screens": ["support-tickets"]
+  },
+  {
+    "tenant": "RetailGmbH",
+    "screens": ["support-tickets"]
+  }
+]

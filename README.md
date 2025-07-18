@@ -2,9 +2,13 @@
 
 Flowbit is a containerized SaaS platform built with microfrontend architecture, multi-tenant JWT authentication, and n8n workflow automation.
 
----
 
-## 🚀 Features
+## Flowchart
+
+<img width="1824" height="971" alt="image" src="https://github.com/user-attachments/assets/c462f863-5197-4546-b12f-51c3eb94ce0d" />
+
+
+##  Features
 
 -  JWT-based authentication with tenant isolation
 -  React + Tailwind shell + microfrontends (Module Federation)
@@ -13,9 +17,7 @@ Flowbit is a containerized SaaS platform built with microfrontend architecture, 
 -  n8n for workflow automation
 -  Docker Compose for orchestration
 
----
-
-## 📦 Project Structure
+##  Project Structure
 
 ```
 flowbit/
@@ -27,9 +29,8 @@ flowbit/
 └── seed/                  # DB seed scripts
 ```
 
----
 
-## 🐳 Setup (Local Dev with Docker)
+##  Setup (Local Dev with Docker)
 
 ###  Clone the Repo
 
@@ -59,9 +60,8 @@ SHARED_SECRET=uX8!pV3m8Lz9@eQ7fC$2rT1y&Wg6NbHd
 docker-compose up --build
 ```
 
----
 
-## 🔗 Services Running
+## Services Running
 
 | Service             | URL                         |
 |---------------------|-----------------------------|
@@ -71,16 +71,14 @@ docker-compose up --build
 | MongoDB             | mongodb://localhost:27017   |
 | n8n Automation      | http://localhost:5678       |
 
----
 
-## 🧪 Test Users
+##  Test Users
 
 Seed script includes a test tenant and admin user. Update `seed/seed.js` as needed.
 
----
 
 
-## ✅ TODO / Roadmap
+##  TODO / Roadmap
 
 - Add role-based access control (RBAC)
 - Integrate Stripe for tenant billing

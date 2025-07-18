@@ -1,0 +1,53 @@
+version: "3.9"
+services:
+  mongo:
+    image: mongo
+    container_name: flowbit-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  backend:
+    build: ./backend
+    container_name: flowbit-backend
+    ports:
+      - "5000:5000"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/flowbit
+      - JWT_SECRET=supersecret
+      - SHARED_SECRET=uX8!pV3m8Lz9@eQ7fC$2rT1y&Wg6NbHd
+    depends_on:
+      - mongo
+
+  frontend-shell:
+    build: ./frontend-shell
+    container_name: flowbit-shell
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+  support-tickets-app:
+    build: ./support-tickets-app
+    container_name: flowbit-support
+    ports:
+      - "3001:3001"
+    depends_on:
+      - backend
+
+  n8n:
+    image: n8nio/n8n
+    container_name: flowbit-n8n
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_BASIC_AUTH_USER=admin
+      - N8N_BASIC_AUTH_PASSWORD=admin123
+      - N8N_HOST=n8n
+      - N8N_PORT=5678
+    depends_on:
+      - backend
+
+volumes:
+  mongo-data:

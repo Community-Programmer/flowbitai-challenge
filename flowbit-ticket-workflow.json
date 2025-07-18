@@ -1,0 +1,103 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "mark-done",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -32,
+        0
+      ],
+      "id": "4c708514-59b1-4a71-915f-64ea1796bfa7",
+      "name": "Webhook",
+      "webhookId": "6cf826dd-c892-42fe-a18a-56f30fb04945"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "261637c3-7dbf-48d9-aa3b-0c3d47138386",
+      "name": "Wait",
+      "webhookId": "f0f7276f-a703-414c-bdce-05702c2ee0d3",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:5000/webhook/ticket-done",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "x-shared-secret",
+              "value": "uX8!pV3m8Lz9@eQ7fC$2rT1y&Wg6NbHd"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "=ticketId",
+              "value": "={{ $json.body.ticketId }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        416,
+        0
+      ],
+      "id": "b33a8745-22c8-4fca-b6b2-dc9429b68722",
+      "name": "HTTP Request"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "901f392f-1cb0-4c3c-ae1a-b7a0b4b6a4c9",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "ed4de19df38ef23fefc3e1757568d7a15e5020290e0acfbb39e7cfec237fa237"
+  },
+  "id": "8hXNpMtA80hWMmZ4",
+  "tags": []
+}

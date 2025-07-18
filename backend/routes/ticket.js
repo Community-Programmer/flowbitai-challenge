@@ -20,10 +20,11 @@ ticketRouter.post('/', authMiddleware(), async (req, res) => {
     createdBy: req.user.id,
     customerId: req.user.customerId
   });
-
+console.log('Triggering n8n webhook...');
   // Send to n8n
   try {
-    await axios.post('http://n8n:5678/webhook/test', {
+    
+    await axios.post('http://localhost:5678/webhook-test/mark-done', {
       ticketId: ticket._id,
       customerId: req.user.customerId
     });

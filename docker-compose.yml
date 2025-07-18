@@ -10,6 +10,7 @@ services:
 
   backend:
     build: ./backend
+    platform: linux/amd64
     container_name: flowbit-backend
     ports:
       - "5000:5000"
@@ -22,6 +23,7 @@ services:
 
   frontend-shell:
     build: ./frontend-shell
+    platform: linux/amd64
     container_name: flowbit-shell
     ports:
       - "3000:3000"
@@ -30,6 +32,7 @@ services:
 
   support-tickets-app:
     build: ./support-tickets-app
+    platform: linux/amd64
     container_name: flowbit-support
     ports:
       - "3001:3001"
